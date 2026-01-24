@@ -266,8 +266,6 @@ export const generateResumePDF = () => {
     
     doc.setFont("helvetica", "bold");
     doc.text("Ch. Charan Singh University, Meerut", 20, y);
-    doc.setFont("helvetica", "normal");
-    doc.text("2020", 190, y, { align: "right" });
     y += 4;
     doc.setFont("helvetica", "italic");
     doc.text("Bachelor of Arts", 20, y);
