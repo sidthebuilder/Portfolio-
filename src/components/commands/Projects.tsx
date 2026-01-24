@@ -10,7 +10,7 @@ const Projects: React.FC = () => {
   return (
     <div data-testid="projects">
       <ProjectsIntro>
-        Here are my high-impact projects. <br />
+        Here are my key projects. <br />
         Numbers don't lie. Neither does the code.
       </ProjectsIntro>
       {projects.map(({ id, title, desc, metrics, stack }) => (
@@ -31,43 +31,43 @@ const Projects: React.FC = () => {
 const projects = [
   {
     id: 1,
-    title: "Verdant AI Orchestrator",
-    metrics: "Router-Delegate Architecture • Fail-Safe Inference",
-    stack: "Python, FastAPI, Next.js 14, Genesis Physics Engine",
-    desc: "High-performance multi-agent swarms for complex problem-solving domains.",
+    title: "Verdant AI: Multi-Agent Orchestration",
+    metrics: "85% success rate • 7-agent swarm • 70% faster task completion",
+    stack: "Python, FastAPI, Next.js 14, Llama 3, Docker",
+    desc: "High-performance multi-agent system for complex problem-solving.",
     url: "https://github.com/sidthebuilder/verdant-ai",
   },
   {
     id: 2,
-    title: "NeuroSim Engine",
-    metrics: "Physics-integrated Emotional Intelligence • Zero Resubmissions",
-    stack: "Isaac Sim, USD, PhysX, Behavior Trees",
-    desc: "Advanced character simulation with dynamic traits, emotions, and decision-making AI.",
+    title: "NeuroSim Engine: AI Character Simulation",
+    metrics: "2,000+ behavioral sequences • 50% less scripting time",
+    stack: "C#, Unity, Behavior Trees, Emotion Modeling",
+    desc: "AI character simulation with emotional intelligence.",
     url: "https://github.com/sidthebuilder/-NeuroSim-Engine",
   },
   {
     id: 3,
-    title: "AI Outreach Automation",
-    metrics: "92% Accuracy • Reduced manual processing by 80%",
-    stack: "Next.js, FastAPI, OpenAI, n8n",
-    desc: "Automated cold emailing and follow-ups with personalized AI agents.",
-    url: "https://github.com/sidthebuilder",
+    title: "GMX TradeDesk: DeFi Trading Automation",
+    metrics: "Sub-100ms execution • 500+ backtested scenarios",
+    stack: "Python, Flask, Web3, PyQt5, SQLAlchemy",
+    desc: "Desktop trading app for GMX V2 perpetuals exchange.",
+    url: "https://github.com/sidthebuilder/gmx-v2-arbitrum-trader",
   },
   {
     id: 4,
-    title: "Trading Bot (GMX)",
-    metrics: "Risk Management Protocols • Real-time Processing",
-    stack: "Python, Web3, Flask, Docker",
-    desc: "High-frequency trading bot with automated strategy execution.",
-    url: "https://github.com/sidthebuilder",
+    title: "Isaac Sim Physics: Breakable Simulation",
+    metrics: "761 lines • 60 FPS • 1,000+ training samples",
+    stack: "Python, NVIDIA Isaac Sim, PhysX, USD",
+    desc: "Robotics training environment for ML data generation.",
+    url: "https://github.com/sidthebuilder/Isaac-fishing-rod",
   },
   {
     id: 5,
-    title: "AI E-Learning Platform",
-    metrics: "4.8/5 Learner Satisfaction • 30+ Automated Courses",
-    stack: "React, Node.js, AI Assessment Engine",
-    desc: "Adaptive learning system with real-time automated student assessments.",
-    url: "https://github.com/sidthebuilder",
+    title: "Quantum-Inspired Distributed Optimizer",
+    metrics: "QAOA & Annealing algorithms • NP-hard problems",
+    stack: "Python, React, GitHub Actions",
+    desc: "Classical solver using quantum-inspired algorithms.",
+    url: "https://github.com/sidthebuilder/Quantum-Inspired-Distributed-Optimizer",
   },
 ];
 

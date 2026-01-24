@@ -4,31 +4,34 @@ const Skills: React.FC = () => {
     return (
         <Wrapper data-testid="skills">
             <div style={{ marginBottom: "1.5rem" }}>
-                <h3>Full-Stack Development</h3>
-                <p>
-                    HTML5 | CSS3 | JavaScript | React | WordPress | Webflow <br />
-                    Python | Flask | Node.js | RESTful APIs | Docker | Git
-                </p>
-            </div>
-            <div style={{ marginBottom: "1.5rem" }}>
                 <h3>AI & Machine Learning</h3>
                 <p>
-                    LLM Fine-Tuning | Prompt Engineering | Voice Data Annotation <br />
-                    GPT-4/Claude Integration | Hugging Face | Isaac Sim (USD + PhysX)
+                    LLM Fine-Tuning (LoRA, DPO) | RAG Pipeline Development | Prompt Engineering <br />
+                    Model Evaluation (MT-Bench, HELM) | AI Agent Orchestration | NVIDIA Isaac Sim
                 </p>
             </div>
             <div style={{ marginBottom: "1.5rem" }}>
-                <h3>Automation & Integration</h3>
+                <h3>Programming Languages</h3>
                 <p>
-                    n8n Workflow Automation | WhatsApp/Email APIs | Webhooks <br />
-                    Business Process Automation | Data Pipeline Development
+                    Python | JavaScript | TypeScript | C# | SQL | Bash
+                </p>
+            </div>
+            <div style={{ marginBottom: "1.5rem" }}>
+                <h3>Backend Development</h3>
+                <p>
+                    FastAPI | Flask | Node.js | Express | PostgreSQL | MongoDB | RESTful APIs
+                </p>
+            </div>
+            <div style={{ marginBottom: "1.5rem" }}>
+                <h3>Frontend Development</h3>
+                <p>
+                    Next.js 14 | React | Tailwind CSS | HTML5 | CSS3
                 </p>
             </div>
             <div>
-                <h3>Digital Marketing</h3>
+                <h3>Tools & Platforms</h3>
                 <p>
-                    SEO Optimization | Google Analytics | Content Strategy <br />
-                    Performance Marketing | Social Media Integration
+                    Docker | Git | GitHub Actions | n8n | AWS | Hugging Face | OpenAI API
                 </p>
             </div>
         </Wrapper>
