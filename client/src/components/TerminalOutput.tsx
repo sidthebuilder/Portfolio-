@@ -3,7 +3,7 @@ import { type Project, type Skill } from "@shared/schema";
 import { ExternalLink, Github } from "lucide-react";
 
 interface TerminalOutputProps {
-  type: 'text' | 'error' | 'success' | 'projects' | 'skills' | 'help' | 'about';
+  type: 'text' | 'error' | 'success' | 'projects' | 'skills' | 'help' | 'about' | 'contact';
   content?: string;
   data?: any;
 }
@@ -21,7 +21,7 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
 
   if (type === 'error') {
     return (
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -34,7 +34,7 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
 
   if (type === 'success') {
     return (
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -47,7 +47,7 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
 
   if (type === 'help') {
     return (
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -57,19 +57,25 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
         <div className="grid grid-cols-[100px_1fr] gap-2">
           <span className="text-primary font-bold">about</span>
           <span className="opacity-80">Display system information and bio</span>
-          
+
           <span className="text-primary font-bold">projects</span>
           <span className="opacity-80">List project directory</span>
-          
+
           <span className="text-primary font-bold">skills</span>
           <span className="opacity-80">Analyze technical capabilities</span>
-          
+
+          <span className="text-primary font-bold">chat, ask</span>
+          <span className="opacity-80">Interact with VERDANT system</span>
+
+          <span className="text-primary font-bold">resume</span>
+          <span className="opacity-80">Generate PDF Curriculum Vitae</span>
+
           <span className="text-primary font-bold">contact</span>
           <span className="opacity-80">Open communication frequency</span>
-          
+
           <span className="text-primary font-bold">clear</span>
           <span className="opacity-80">Clear terminal buffer</span>
-          
+
           <span className="text-primary font-bold">theme</span>
           <span className="opacity-80">Cycle visual interface profiles</span>
         </div>
@@ -80,14 +86,14 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
   if (type === 'projects') {
     const projects = data as Project[];
     return (
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         {projects.map((project, i) => (
-          <motion.div 
+          <motion.div
             key={project.id}
             variants={itemVariants}
             initial="hidden"
@@ -133,32 +139,36 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
     }, {} as Record<string, Skill[]>);
 
     return (
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="mb-4 space-y-4"
+        className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         {Object.entries(grouped).map(([category, items], i) => (
-          <div key={category}>
-            <h3 className="font-bold border-b border-primary/20 inline-block mb-2 text-sm uppercase tracking-wider">
-              {`>> MODULE: ${category}`}
+          <motion.div
+            key={category}
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: i * 0.1 }}
+            whileHover={{ scale: 1.02, backgroundColor: "rgba(34, 197, 94, 0.1)" }}
+            className="border border-primary/40 p-4 bg-primary/5 transition-colors cursor-default"
+          >
+            <h3 className="text-lg font-bold mb-3 border-b border-primary/30 pb-2">
+              {category.replace(/_/g, " ")}
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              {items.map((skill, j) => (
-                <motion.div
+            <div className="flex flex-wrap gap-2">
+              {items.map((skill) => (
+                <span
                   key={skill.id}
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ delay: (i * 0.2) + (j * 0.05) }}
-                  className="text-sm"
+                  className="px-2 py-1 bg-primary/10 border border-primary/30 rounded text-sm font-medium hover:bg-primary/20 transition-colors"
                 >
-                  <span className="text-primary/60 mr-1">[*]</span> {skill.name}
-                </motion.div>
+                  {skill.name}
+                </span>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     );
@@ -166,7 +176,7 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
 
   if (type === 'about') {
     return (
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -174,8 +184,8 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
       >
         <div className="flex flex-col md:flex-row gap-6 items-start">
           <div className="border border-primary/30 p-1 shrink-0">
-             {/* Dynamic ASCII-like avatar placeholder */}
-             <div className="w-24 h-24 bg-primary/10 flex items-center justify-center text-xs font-mono text-center leading-none overflow-hidden select-none">
+            {/* Dynamic ASCII-like avatar placeholder */}
+            <div className="w-24 h-24 bg-primary/10 flex items-center justify-center text-xs font-mono text-center leading-none overflow-hidden select-none">
               01010101
               10101010
               00110011
@@ -185,17 +195,19 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
             </div>
           </div>
           <div>
-            <h2 className="text-xl font-bold mb-2">SYSTEM USER: DEV_PROFILE</h2>
+            <h2 className="text-xl font-bold mb-2">SYSTEM USER: SHASHANK</h2>
+            <p className="text-sm opacity-70 mb-3">AI Systems Engineer | Full-Stack Developer | AI Training Specialist</p>
             <p className="mb-2 opacity-90 leading-relaxed">
-              Full-stack developer specialized in building accessible, performant web applications. 
-              Currently operating in the React/Node.js ecosystem. 
-              Obsessed with clean code, retro aesthetics, and optimizing user experiences.
+              AI Systems Engineer and Full-Stack Developer with 4+ years of experience building
+              production-grade AI systems, LLM training pipelines, and scalable full-stack platforms.
+              Specialized in multi-agent architectures, automation workflows, and AI evaluation for
+              enterprise and startup environments.
             </p>
             <p className="opacity-70 text-sm">
               Current Status: <span className="text-green-400 animate-pulse">ONLINE</span>
             </p>
             <p className="opacity-70 text-sm">
-              Location: Remote // Earth
+              Location: Remote // Worldwide
             </p>
           </div>
         </div>
@@ -203,8 +215,54 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
     );
   }
 
+  if (type === 'contact') {
+    return (
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="mb-4 space-y-2 max-w-2xl"
+      >
+        <p className="font-bold border-b border-primary/30 pb-1 mb-4">CONTACT_CHANNELS_OPEN</p>
+
+        <div className="grid gap-3">
+          {[
+            { label: "LINKEDIN", value: "shashank-kumar-772a2035b", href: "https://www.linkedin.com/in/shashank-kumar-772a2035b/" },
+            { label: "GITHUB", value: "sidthebuilder", href: "https://github.com/sidthebuilder" },
+            { label: "EMAIL", value: "shashankchoudhary792@gmail.com", href: "mailto:shashankchoudhary792@gmail.com" }
+          ].map((item, i) => (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              target="_blank"
+              rel="noreferrer"
+              variants={itemVariants}
+              custom={i}
+              className="flex items-center hover:bg-primary/10 p-2 border border-transparent hover:border-primary/30 transition-all group cursor-pointer"
+            >
+              <span className="w-24 font-bold opacity-70 group-hover:opacity-100 transition-opacity">
+                {item.label}:
+              </span>
+              <span className="text-primary underline decoration-dotted group-hover:decoration-solid flex-1">
+                {item.value}
+              </span>
+              <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity ml-2" />
+            </motion.a>
+          ))}
+        </div>
+
+        <motion.div
+          variants={itemVariants}
+          className="mt-4 text-sm opacity-60"
+        >
+          [STATUS] Ready for incoming transmission.
+        </motion.div>
+      </motion.div>
+    );
+  }
+
   return (
-    <motion.div 
+    <motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"

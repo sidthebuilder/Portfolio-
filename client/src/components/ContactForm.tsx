@@ -11,14 +11,14 @@ export function ContactForm({ onComplete, onCancel }: ContactFormProps) {
   const [step, setStep] = useState<"name" | "email" | "message">("name");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [error, setError] = useState<string | null>(null);
-  
+
   const createMessage = useContact();
 
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       const val = (e.currentTarget as HTMLInputElement).value;
-      
+
       if (!val.trim()) {
         setError("Field cannot be empty.");
         return;
@@ -39,7 +39,7 @@ export function ContactForm({ onComplete, onCancel }: ContactFormProps) {
         // Submit
         const finalData = { ...formData, message: val };
         setFormData(finalData); // optimistic
-        
+
         try {
           await createMessage.mutateAsync(finalData);
           onComplete();
@@ -53,15 +53,33 @@ export function ContactForm({ onComplete, onCancel }: ContactFormProps) {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       className="border border-primary/40 p-6 my-4 bg-primary/5 max-w-2xl relative"
     >
+      <div className="mb-4 space-y-2 text-sm border-b border-primary/30 pb-4">
+        <h3 className="text-primary font-bold text-base mb-2">CONTACT_CHANNELS_OPEN</h3>
+        <div className="grid gap-2">
+          <a href="https://www.linkedin.com/in/shashank-kumar-772a2035b/" target="_blank" rel="noreferrer" className="flex items-center hover:bg-primary/20 p-1 transition-colors group">
+            <span className="w-24 opacity-70">LINKEDIN:</span>
+            <span className="text-primary underline decoration-dotted group-hover:decoration-solid">shashank-kumar-772a2035b</span>
+          </a>
+          <a href="https://github.com/sidthebuilder" target="_blank" rel="noreferrer" className="flex items-center hover:bg-primary/20 p-1 transition-colors group">
+            <span className="w-24 opacity-70">GITHUB:</span>
+            <span className="text-primary underline decoration-dotted group-hover:decoration-solid">sidthebuilder</span>
+          </a>
+          <a href="mailto:shashankchoudhary792@gmail.com" className="flex items-center hover:bg-primary/20 p-1 transition-colors group">
+            <span className="w-24 opacity-70">EMAIL:</span>
+            <span className="text-primary underline decoration-dotted group-hover:decoration-solid">shashankchoudhary792@gmail.com</span>
+          </a>
+        </div>
+      </div>
+
       <div className="absolute top-0 left-0 px-2 py-1 text-xs bg-primary text-black font-bold">
         SECURE TRANSMISSION LINK
       </div>
-      
+
       <div className="mt-4 space-y-4 font-mono">
         {formData.name && (
           <div className="flex gap-4 opacity-50">
@@ -69,7 +87,7 @@ export function ContactForm({ onComplete, onCancel }: ContactFormProps) {
             <span>{formData.name}</span>
           </div>
         )}
-        
+
         {formData.email && (
           <div className="flex gap-4 opacity-50">
             <span className="w-20">EMAIL:</span>
@@ -82,30 +100,30 @@ export function ContactForm({ onComplete, onCancel }: ContactFormProps) {
             {step.toUpperCase()}:
           </span>
           <div className="flex-1">
-             {step === "message" ? (
-               <textarea
-                 className="w-full bg-transparent border-b border-primary/50 outline-none text-primary resize-none h-20 focus:border-primary transition-colors"
-                 placeholder="Type your message (Enter to send)..."
-                 autoFocus
-                 onKeyDown={handleKeyDown}
-               />
-             ) : (
-               <input
-                 className="w-full bg-transparent border-b border-primary/50 outline-none text-primary focus:border-primary transition-colors"
-                 placeholder="Type and press Enter..."
-                 autoFocus
-                 onKeyDown={handleKeyDown}
-               />
-             )}
-             {error && (
-               <div className="text-red-500 text-sm mt-1 animate-pulse">
-                 [ERROR] {error}
-               </div>
-             )}
+            {step === "message" ? (
+              <textarea
+                className="w-full bg-transparent border-b border-primary/50 outline-none text-primary resize-none h-20 focus:border-primary transition-colors"
+                placeholder="Type your message (Enter to send)..."
+                autoFocus
+                onKeyDown={handleKeyDown}
+              />
+            ) : (
+              <input
+                className="w-full bg-transparent border-b border-primary/50 outline-none text-primary focus:border-primary transition-colors"
+                placeholder="Type and press Enter..."
+                autoFocus
+                onKeyDown={handleKeyDown}
+              />
+            )}
+            {error && (
+              <div className="text-red-500 text-sm mt-1 animate-pulse">
+                [ERROR] {error}
+              </div>
+            )}
           </div>
         </div>
       </div>
-      
+
       <div className="mt-6 text-xs opacity-50 flex justify-between">
         <span>[ESC] CANCEL TRANSMISSION</span>
         {createMessage.isPending && <span className="animate-pulse">TRANSMITTING...</span>}

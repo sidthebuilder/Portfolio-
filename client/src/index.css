@@ -5,43 +5,112 @@
 @tailwind utilities;
 
 :root {
-  /* Clean Professional Theme */
-  --terminal-bg: 0 0% 8%;       /* Dark slate/black */
-  --terminal-text: 0 0% 90%;    /* Off-white for readability */
-  --terminal-accent: 120 60% 50%; /* Clean readable green for prompt/success */
-  --terminal-dim: 0 0% 40%;     /* Grey for secondary text */
-  
+  /* Balanced Dark Theme - Reduced contrast for comfort */
+  --terminal-bg: 0 0% 12%;
+  /* Softer dark background */
+  --terminal-text: 0 0% 85%;
+  /* Softer white, not harsh */
+  --terminal-accent: 120 50% 55%;
+  /* Medium green, not too bright */
+  --terminal-dim: 0 0% 45%;
+  /* Balanced dim text */
+
   /* Helper vars for Tailwind */
-  --background: 0 0% 8%;
-  --foreground: 0 0% 90%; 
-  --primary: 120 60% 50%;       /* Accent green */
-  --primary-foreground: 0 0% 8%;
-  --card: 0 0% 12%;             /* Slightly lighter than bg */
-  --card-foreground: 0 0% 90%;
-  --border: 0 0% 20%;
-  --input: 0 0% 12%;
-  --ring: 120 60% 50%;
+  --background: 0 0% 12%;
+  --foreground: 0 0% 85%;
+  --primary: 120 50% 55%;
+  /* Balanced green */
+  --primary-foreground: 0 0% 12%;
+  --card: 0 0% 15%;
+  /* Slightly lighter than bg */
+  --card-foreground: 0 0% 85%;
+  --border: 0 0% 25%;
+  --input: 0 0% 15%;
+  --ring: 120 50% 55%;
+}
+
+.theme-amber {
+  --terminal-bg: 20 20% 8%;
+  --terminal-text: 35 100% 90%;
+  --terminal-accent: 35 100% 50%;
+  /* Amber/Orange */
+  --terminal-dim: 35 50% 40%;
+
+  --background: 20 20% 8%;
+  --foreground: 35 100% 90%;
+  --primary: 35 100% 50%;
+  --primary-foreground: 20 20% 8%;
+  --card: 20 20% 12%;
+  --card-foreground: 35 100% 90%;
+  --border: 35 50% 20%;
+  --input: 20 20% 12%;
+  --ring: 35 100% 50%;
+}
+
+.theme-cyber {
+  --terminal-bg: 220 30% 8%;
+  --terminal-text: 190 100% 90%;
+  --terminal-accent: 190 100% 50%;
+  /* Cyan/Blue */
+  --terminal-dim: 190 50% 40%;
+
+  --background: 220 30% 8%;
+  --foreground: 190 100% 90%;
+  --primary: 190 100% 50%;
+  --primary-foreground: 220 30% 8%;
+  --card: 220 30% 12%;
+  --card-foreground: 190 100% 90%;
+  --border: 190 50% 20%;
+  --input: 220 30% 12%;
+  --ring: 190 100% 50%;
+}
+
+.theme-light {
+  /* Optimized light theme - warm and comfortable */
+  --terminal-bg: 45 25% 94%;
+  /* Warmer, softer cream */
+  --terminal-text: 0 0% 20%;
+  /* Not too dark, easier to read */
+  --terminal-accent: 140 45% 40%;
+  /* Balanced green - not too bright or dark */
+  --terminal-dim: 0 0% 55%;
+  /* Medium gray for secondary text */
+
+  --background: 45 25% 94%;
+  --foreground: 0 0% 20%;
+  --primary: 140 45% 40%;
+  --primary-foreground: 45 25% 94%;
+  --card: 45 20% 90%;
+  /* Slightly darker cards for depth */
+  --card-foreground: 0 0% 20%;
+  --border: 45 15% 78%;
+  /* Soft borders */
+  --input: 45 20% 90%;
+  --ring: 140 45% 40%;
 }
 
 @layer base {
   body {
-    @apply bg-background text-foreground font-mono overflow-hidden;
+    @apply bg-background text-foreground font-mono overflow-y-auto overflow-x-hidden;
     /* No text-shadow for clean look */
   }
-  
+
   /* Custom Scrollbar for Terminal */
   ::-webkit-scrollbar {
     width: 8px;
   }
+
   ::-webkit-scrollbar-track {
-    background: hsl(var(--background)); 
+    background: hsl(var(--background));
   }
+
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--border)); 
+    background: hsl(var(--border));
     border-radius: 4px;
   }
+
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--terminal-dim)); 
+    background: hsl(var(--terminal-dim));
   }
 }
 
@@ -64,6 +133,13 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }

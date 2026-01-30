@@ -5,12 +5,13 @@ import { CommandInput } from "@/components/CommandInput";
 import { BootSequence } from "@/components/BootSequence";
 import { QuickActions } from "@/components/QuickActions";
 import { ContactForm } from "@/components/ContactForm";
+import { ThemeController } from "@/components/ThemeController";
 
 type HistoryItem = {
   id: string;
   type: 'command' | 'output';
   content?: string;
-  dataType?: 'text' | 'error' | 'success' | 'projects' | 'skills' | 'help' | 'about';
+  dataType?: 'text' | 'error' | 'success' | 'projects' | 'skills' | 'help' | 'about' | 'contact';
   data?: any;
 };
 
@@ -19,10 +20,10 @@ export default function TerminalPage() {
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [formMode, setFormMode] = useState(false);
-  const [theme, setTheme] = useState<'green' | 'amber' | 'cyber'>('green');
-  
+  const [theme, setTheme] = useState<'green' | 'light'>('green');
+
   const bottomRef = useRef<HTMLDivElement>(null);
-  
+
   // Data hooks
   const { data: projects, refetch: refetchProjects } = useProjects();
   const { data: skills, refetch: refetchSkills } = useSkills();
@@ -37,23 +38,25 @@ export default function TerminalPage() {
   };
 
   const handleThemeChange = () => {
-    const themes: ('green' | 'amber' | 'cyber')[] = ['green', 'amber', 'cyber'];
-    const nextIndex = (themes.indexOf(theme) + 1) % themes.length;
-    const nextTheme = themes[nextIndex];
+    // Rotation logic including light mode
+    const nextTheme = theme === 'green' ? 'light' : 'green';
     setTheme(nextTheme);
-    
+
     // Apply theme class to body
     document.body.className = '';
-    if (nextTheme !== 'green') {
-      document.body.classList.add(`theme-${nextTheme}`);
+    if (nextTheme === 'light') {
+      document.body.classList.add('theme-light');
     }
-    
+
     return nextTheme;
   };
 
+  const [chatMode, setChatMode] = useState(false);
+
   const handleCommand = async (cmdRaw: string) => {
-    const cmd = cmdRaw.trim().toLowerCase();
-    
+    const cmd = cmdRaw.trim(); // Keep case for chat messages, but lower for commands
+    const cmdLower = cmd.toLowerCase();
+
     // Add command to display
     addToHistory({
       id: Date.now().toString(),
@@ -62,100 +65,215 @@ export default function TerminalPage() {
     });
 
     // Add to input history
-    setCommandHistory(prev => [...prev, cmdRaw]); // oldest -> newest logic for this stack
+    setCommandHistory(prev => [...prev, cmdRaw]);
 
-    switch(cmd) {
+    // Handle Chat Mode
+    if (chatMode) {
+      if (cmdLower === 'exit' || cmdLower === 'quit') {
+        setChatMode(false);
+        addToHistory({
+          id: Date.now() + 'o',
+          type: 'output',
+          dataType: 'text',
+          content: "VERDANT DISCONNECTED."
+        });
+        return;
+      }
+
+      addToHistory({
+        id: Date.now() + 'o',
+        type: 'output',
+        dataType: 'text',
+        content: "VERDANT: Processing..."
+      });
+
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: cmd })
+        });
+        const data = await res.json();
+        if (data.response) {
+          addToHistory({
+            id: Date.now() + 'o2',
+            type: 'output',
+            dataType: 'text',
+            content: `VERDANT: ${data.response}`
+          });
+        } else {
+          throw new Error("No response");
+        }
+      } catch (e) {
+        addToHistory({
+          id: Date.now() + 'o2',
+          type: 'output',
+          dataType: 'error',
+          content: "VERDANT CONNECTION LOST."
+        });
+      }
+      return;
+    }
+
+    // Normal Command Mode
+    switch (cmdLower) {
       case 'help':
         addToHistory({ id: Date.now() + 'o', type: 'output', dataType: 'help' });
         break;
-        
+
       case 'clear':
         setHistory([]);
         break;
-        
+
       case 'about':
         addToHistory({ id: Date.now() + 'o', type: 'output', dataType: 'about' });
         break;
-        
+
       case 'projects':
         await refetchProjects();
         if (projects) {
-          addToHistory({ 
-            id: Date.now() + 'o', 
-            type: 'output', 
+          addToHistory({
+            id: Date.now() + 'o',
+            type: 'output',
             dataType: 'projects',
-            data: projects 
+            data: projects
           });
         } else {
-           addToHistory({ 
-            id: Date.now() + 'o', 
-            type: 'output', 
+          addToHistory({
+            id: Date.now() + 'o',
+            type: 'output',
             dataType: 'text',
-            content: "Loading project directory..." 
+            content: "Loading project directory..."
           });
         }
         break;
-        
+
       case 'skills':
         await refetchSkills();
         if (skills) {
-          addToHistory({ 
-            id: Date.now() + 'o', 
-            type: 'output', 
+          addToHistory({
+            id: Date.now() + 'o',
+            type: 'output',
             dataType: 'skills',
-            data: skills 
+            data: skills
           });
         } else {
-          addToHistory({ 
-            id: Date.now() + 'o', 
-            type: 'output', 
+          addToHistory({
+            id: Date.now() + 'o',
+            type: 'output',
             dataType: 'text',
-            content: "Analyzing capabilities..." 
+            content: "Analyzing capabilities..."
           });
         }
         break;
-        
+
       case 'contact':
-        setFormMode(true);
+        addToHistory({ id: Date.now() + 'o', type: 'output', dataType: 'contact' });
         break;
-        
+
+      case 'resume':
+        addToHistory({
+          id: Date.now() + 'o',
+          type: 'output',
+          dataType: 'text',
+          content: "Generating PDF Resume..."
+        });
+        import("@/lib/pdfGenerator").then(mod => {
+          mod.generateResumePDF();
+          addToHistory({
+            id: Date.now() + 'o2',
+            type: 'output',
+            dataType: 'success',
+            content: "Resume downloaded successfully."
+          });
+        });
+        break;
+
+      case 'chat':
+        setChatMode(true);
+        addToHistory({
+          id: Date.now() + 'o',
+          type: 'output',
+          dataType: 'text',
+          content: "VERDANT ONLINE. TYPE 'EXIT' TO DISCONNECT."
+        });
+        break;
+
       case 'theme':
         const newTheme = handleThemeChange();
-        addToHistory({ 
-          id: Date.now() + 'o', 
-          type: 'output', 
+        addToHistory({
+          id: Date.now() + 'o',
+          type: 'output',
           dataType: 'success',
-          content: `Visual interface updated: ${newTheme.toUpperCase()}_PROFILE` 
+          content: `Visual interface updated: ${newTheme.toUpperCase()}_PROFILE`
         });
         break;
 
       default:
-        addToHistory({ 
-          id: Date.now() + 'o', 
-          type: 'output', 
+        // Keep "ask <msg>" as a shortcut
+        if (cmdLower.startsWith("ask ")) {
+          const message = cmd.replace(/^ask\s+/i, ""); // case insensitive replace
+          addToHistory({
+            id: Date.now() + 'o',
+            type: 'output',
+            dataType: 'text',
+            content: "VERDANT: Thinking..."
+          });
+
+          try {
+            const res = await fetch("/api/chat", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ message })
+            });
+            const data = await res.json();
+            if (data.response) {
+              addToHistory({
+                id: Date.now() + 'o2',
+                type: 'output',
+                dataType: 'text',
+                content: `VERDANT: ${data.response}`
+              });
+            } else {
+              throw new Error("No response");
+            }
+          } catch (e) {
+            addToHistory({
+              id: Date.now() + 'o2',
+              type: 'output',
+              dataType: 'error',
+              content: "VERDANT CONNECTION LOST."
+            });
+          }
+          return;
+        }
+
+        addToHistory({
+          id: Date.now() + 'o',
+          type: 'output',
           dataType: 'error',
-          content: `Command not found: '${cmd}'. Type 'help' for available commands.` 
+          content: `Command not found: '${cmd}'. Type 'help' for available commands.`
         });
     }
   };
 
   const handleFormComplete = () => {
     setFormMode(false);
-    addToHistory({ 
-      id: Date.now() + 'o', 
-      type: 'output', 
+    addToHistory({
+      id: Date.now() + 'o',
+      type: 'output',
       dataType: 'success',
-      content: "Message transmitted successfully." 
+      content: "Message transmitted successfully."
     });
   };
 
   const handleFormCancel = () => {
     setFormMode(false);
-    addToHistory({ 
-      id: Date.now() + 'o', 
-      type: 'output', 
+    addToHistory({
+      id: Date.now() + 'o',
+      type: 'output',
       dataType: 'text',
-      content: "Transmission aborted." 
+      content: "Transmission aborted."
     });
   };
 
@@ -164,14 +282,20 @@ export default function TerminalPage() {
   }
 
   return (
-    <div className="min-h-screen text-base md:text-lg pb-24 relative overflow-hidden">
+    <div
+      className="min-h-screen text-base md:text-lg pb-24 relative overflow-x-hidden transition-all duration-300"
+    >
+      <ThemeController
+        currentTheme={theme}
+        onToggleTheme={handleThemeChange}
+      />
       {/* CRT Overlay Effects */}
       <div className="scanlines" />
       <div className="vignette" />
-      
+
       {/* Main Container */}
       <div className="relative z-10 max-w-4xl mx-auto p-4 md:p-8">
-        
+
         {/* Persistent Header */}
         <div className="mb-8 opacity-70 border-b border-primary/30 pb-2 flex justify-between items-end">
           <div>
@@ -202,10 +326,10 @@ export default function TerminalPage() {
                   <span>{item.content}</span>
                 </div>
               ) : (
-                <TerminalOutput 
-                  type={item.dataType || 'text'} 
-                  content={item.content} 
-                  data={item.data} 
+                <TerminalOutput
+                  type={item.dataType || 'text'}
+                  content={item.content}
+                  data={item.data}
                 />
               )}
             </div>
@@ -216,13 +340,13 @@ export default function TerminalPage() {
         {formMode ? (
           <ContactForm onComplete={handleFormComplete} onCancel={handleFormCancel} />
         ) : (
-          <CommandInput 
-            onCommand={handleCommand} 
-            history={commandHistory} 
+          <CommandInput
+            onCommand={handleCommand}
+            history={commandHistory}
             disabled={false}
           />
         )}
-        
+
         <div ref={bottomRef} className="h-4" />
       </div>
 

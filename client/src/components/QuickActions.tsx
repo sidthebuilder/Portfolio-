@@ -1,4 +1,4 @@
-import { Monitor, Cpu, Mail, Terminal, FileText } from "lucide-react";
+import { Monitor, Cpu, Mail, FileText, Download } from "lucide-react";
 
 interface QuickActionsProps {
   onAction: (cmd: string) => void;
@@ -10,7 +10,7 @@ export function QuickActions({ onAction }: QuickActionsProps) {
     { label: "PROJECTS", cmd: "projects", icon: FileText },
     { label: "SKILLS", cmd: "skills", icon: Cpu },
     { label: "CONTACT", cmd: "contact", icon: Mail },
-    { label: "THEME", cmd: "theme", icon: Terminal },
+    { label: "RESUME", cmd: "resume", icon: Download },
   ];
 
   return (

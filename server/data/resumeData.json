@@ -1,0 +1,146 @@
+{
+    "personalInfo": {
+        "name": "Shashank Kumar",
+        "title": "Senior Data Labeling & AI Training Specialist | Full-Stack & AI Engineer",
+        "location": "India",
+        "email": "shashankchouhdhary792@gmail.com",
+        "github": "sidthebuilder",
+        "githubUrl": "https://github.com/sidthebuilder",
+        "portfolioUrl": "https://sidthebuilder.github.io/Terminal-Portfolio/",
+        "tagline": "Freelancer",
+        "avatar": "https://avatars.githubusercontent.com/u/194476243?v=4"
+    },
+    "professionalSummary": "AI Systems Engineer with 4+ years of experience architecting intelligent systems and scalable applications. Delivered measurable impact by improving model safety by 25%, building AI agents with 85% task accuracy, and engineering solutions that drove 150% client growth. Combines expertise in LLM fine-tuning, multi-agent architecture, and production-grade deployment.",
+    "coreCompetencies": [
+        "Large Language Models (LLMs)",
+        "Multi-Agent Systems",
+        "RAG Pipelines",
+        "FastAPI",
+        "Next.js",
+        "React",
+        "Docker",
+        "Python"
+    ],
+    "technicalSkills": {
+        "Languages": "Python, JavaScript, TypeScript, C#, SQL",
+        "Frontend": "React, Next.js, TailwindCSS",
+        "Backend": "FastAPI, Flask, Node.js, Express",
+        "Databases": "PostgreSQL, MongoDB, Supabase",
+        "AI_ML": "OpenAI API, Hugging Face, LLM Evaluation, RLHF",
+        "Tools": "Docker, n8n, GitHub Actions"
+    },
+    "experience": [
+        {
+            "role": "AI Training and Evaluation Specialist",
+            "company": "Contract for AI Research Platforms (via Upwork, Outlier, OneForma)",
+            "period": "2024 - Present",
+            "details": [
+                "Improved model safety scores by 25% by designing and executing 500+ adversarial prompts for red-teaming frontier LLMs.",
+                "Accelerated data pipeline efficiency by 30% by creating annotation scripts and ontology systems for 10,000+ multilingual NLP samples, maintaining 98% QA accuracy.",
+                "Trained and evaluated 3+ major LLMs on reasoning and code-generation tasks, directly contributing to production release cycles.",
+                "Consistently rated Top Performer (top 5%) across 1,000+ complex evaluation tasks."
+            ]
+        },
+        {
+            "role": "AI Training Specialist & Voice Artist",
+            "company": "Scale AI",
+            "period": "2022 - Present",
+            "details": [
+                "Annotating 10k+ text/voice datasets for multilingual models.",
+                "Designing ontology management systems for LLM/Voice AI.",
+                "Leading prompt complexity evaluation & metadata accuracy."
+            ]
+        },
+        {
+            "role": "Freelance Full-Stack Developer",
+            "company": "Fiverr and Direct Clients",
+            "period": "2020 - 2024",
+            "details": [
+                "Architected 30+ full-stack applications, including 5+ AI-powered SaaS tools that automated workflows for 100+ monthly active users.",
+                "Boosted client revenue by 40% for 3 key accounts by building custom RAG chatbots that improved support answer accuracy by 60%.",
+                "Drove 150% average increase in organic traffic and automated 500+ business processes, saving clients 20+ hours per week.",
+                "Maintained 99.9% uptime and sub-second load times for all deployed applications."
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "name": "NEXUS ENGINE",
+            "url": "https://github.com/sidthebuilder/React-express-nexus",
+            "stack": "TypeScript, React, Express, Vite",
+            "description": "Full-stack React & Express boilerplate with integrated AI agent capabilities.",
+            "bullets": [
+                "Engineered a 7-agent swarm using Router-Delegate pattern.",
+                "Reduced task completion time by 70% via autonomous workflows."
+            ]
+        },
+        {
+            "name": "NEON GENESIS",
+            "url": "https://github.com/sidthebuilder/Neon",
+            "stack": "TypeScript, PostgreSQL, Drizzle ORM, SQL",
+            "description": "Serverless PostgreSQL database wrapper with seamless Drizzle ORM integration.",
+            "bullets": [
+                "Optimized query performance by 40% using serverless connection pooling.",
+                "Standardized schema management across 5+ microservices."
+            ]
+        },
+        {
+            "name": "PY-ROBOTICS",
+            "url": "https://github.com/sidthebuilder/PyRobotics",
+            "stack": "Python, NumPy, Matplotlib, Physics",
+            "description": "Comprehensive Python library for robotics simulation, path planning, and kinematics.",
+            "bullets": [
+                "Generated 1,000+ synthetic training samples at 60 FPS.",
+                "Modeled complex D6 joint dynamics for realistic breakage simulation."
+            ]
+        },
+        {
+            "name": "GMX TRADE DESK",
+            "url": "https://github.com/sidthebuilder/gmx-v2-arbitrum-trader",
+            "stack": "Python, Flask, Web3.py, PyQt5",
+            "description": "Automated trading bot and position manager for GMX V2 on Arbitrum.",
+            "bullets": [
+                "Developed real-time position manager with sub-100ms execution latency.",
+                "Built backtesting engine simulating 500+ historical trading scenarios."
+            ]
+        },
+        {
+            "name": "SOLAR PHANTOM",
+            "url": "https://github.com/sidthebuilder/Solar-Phantom",
+            "stack": "Python, SciPy, Physics Modeling, Data Analysis",
+            "description": "Optimization framework for solar-powered autonomous drones.",
+            "bullets": [
+                "Optimized energy consumption models for 24-hour continuous flight.",
+                "Unified physics calculations improving simulation accuracy by 30%."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "University of the People",
+            "degree": "Bachelor of Science in Computer Science",
+            "year": "Expected 2026",
+            "status": "In Progress"
+        },
+        {
+            "institution": "Subharti University",
+            "degree": "Bachelor of Arts",
+            "year": "2022 - March 2025"
+        },
+        {
+            "institution": "Dr. B. R. Ambedkar University",
+            "degree": "Diploma in Dental Hygiene",
+            "year": "2021 - 2023"
+        }
+    ],
+    "certifications": [
+        "CS50: Introduction to Computer Science - Harvard University (edX)",
+        "Scale AI Annotation Specialist Certification",
+        "Google Digital Marketing",
+        "Deloitte Data Analytics"
+    ],
+    "additionalInfo": [
+        "Languages: English (Fluent), Hindi (Native)",
+        "Earned a 4.8/5 average platform rating and consistent 5-star reviews for delivering high-impact solutions"
+    ]
+}
