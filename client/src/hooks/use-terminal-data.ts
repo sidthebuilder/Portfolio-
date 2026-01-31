@@ -7,8 +7,15 @@ export function useProjects() {
   return useQuery({
     queryKey: ["/api/projects"],
     queryFn: async () => {
-      // Return static data from resumeData.json
-      return resumeData.projects;
+      // Transform resumeData.json projects to match UI expectations
+      return resumeData.projects.map((p: any) => ({
+        id: p.name,
+        title: p.name,
+        description: p.description,
+        techStack: p.stack ? p.stack.split(", ") : [],
+        link: p.url || null,
+        github: (p.url && p.url.includes("github")) ? p.url : null
+      }));
     },
   });
 }
@@ -18,8 +25,24 @@ export function useSkills() {
   return useQuery({
     queryKey: ["/api/skills"],
     queryFn: async () => {
-      // Return static data from resumeData.json
-      return resumeData.technicalSkills;
+      // Transform skills object to array of { name, category }
+      const skillList: { id: string; name: string; category: string }[] = [];
+
+      // Use technicalSkills from resumeData
+      if (resumeData.technicalSkills) {
+        Object.entries(resumeData.technicalSkills).forEach(([category, skillsStr]) => {
+          // Type cast skillsStr to string since it comes from JSON
+          const names = (skillsStr as string).split(", ");
+          names.forEach((name, index) => {
+            skillList.push({
+              id: `${category}-${index}`,
+              name,
+              category
+            });
+          });
+        });
+      }
+      return skillList;
     },
   });
 }

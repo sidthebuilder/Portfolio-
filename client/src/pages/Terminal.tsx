@@ -249,7 +249,7 @@ export default function TerminalPage() {
         {/* Persistent Header */}
         <div className="mb-8 opacity-70 border-b border-primary/30 pb-2 flex justify-between items-end">
           <div>
-            <h1 className="text-2xl font-bold">PORTFOLIO_TERM_V1.0</h1>
+            <h1 className="text-2xl font-bold">SHASHANK_TERM_V2.0</h1>
             <p className="text-xs">LOGGED IN AS: VISITOR</p>
           </div>
           <div className="text-right text-xs">

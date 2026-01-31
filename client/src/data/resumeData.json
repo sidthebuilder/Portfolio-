@@ -1,15 +1,15 @@
 {
     "personalInfo": {
         "name": "Shashank Kumar",
-        "title": "Senior Data Labeling & AI Training Specialist | Full-Stack & AI Engineer",
+        "title": "AI Systems Engineer | Full-Stack Developer | AI Training Specialist",
         "location": "Baraut, Baghpat, India",
-        "email": "shashankchouhdhary792@gmail.com",
+        "email": "shashankchoudhry792@gmail.com",
         "github": "sidthebuilder",
         "githubUrl": "https://github.com/sidthebuilder",
-        "portfolioUrl": "https://sidthebuilder.github.io/Terminal-Portfolio/",
+        "portfolioUrl": "https://sidthebuilder.github.io/Portfolio/",
         "tagline": "Available for worldwide freelance and contract engagements"
     },
-    "professionalSummary": "AI Systems Engineer with 4+ years of experience architecting intelligent systems and scalable applications. Delivered measurable impact by improving model safety by 25%, building AI agents with 85% task accuracy, and engineering solutions that drove 150% client growth. Combines expertise in LLM fine-tuning, multi-agent architecture, and production-grade deployment.",
+    "professionalSummary": "AI Systems Engineer and Full-Stack Developer with 4+ years of experience building production-grade AI systems, LLM training pipelines, and scalable full-stack platforms. Specialized in multi-agent architectures, automation workflows, and AI evaluation for enterprise and startup environments.",
     "coreCompetencies": [
         "Large Language Models (LLMs)",
         "Multi-Agent Systems",
@@ -21,11 +21,11 @@
         "Python"
     ],
     "technicalSkills": {
-        "AI_ML": "LLM Fine-Tuning (LoRA, DPO), RAG Pipeline Development, Prompt Engineering, Model Evaluation (MT-Bench, HELM), AI Agent Orchestration, NVIDIA Isaac Sim",
-        "Programming": "Python, JavaScript, TypeScript, C#, SQL, Bash",
+        "AI_ML": "LLM Fine-Tuning, Prompt Engineering, Model Alignment, GPT-4, Claude, Hugging Face, Isaac Sim, Behavior Modeling, Genesis Physics Engine, Evaluation Frameworks, RLHF Concepts",
+        "Programming": "Python, JavaScript, TypeScript, Bash, SQL",
         "Backend": "FastAPI, Flask, Node.js, Express, PostgreSQL, MongoDB, RESTful APIs",
-        "Frontend": "Next.js 14, React, Tailwind CSS, HTML5, CSS3",
-        "Tools": "Docker, Git, GitHub Actions, n8n, AWS, Hugging Face, OpenAI API, Anthropic API"
+        "Frontend": "Next.js 14, React, Tailwind CSS, HTML5, CSS3, Responsive Design",
+        "Tools": "Docker, Git, GitHub Actions, n8n, AWS, Figma, Postman, Scale AI Platform, OpenAI API, Anthropic Claude"
     },
     "experience": [
         {
@@ -41,12 +41,23 @@
         },
         {
             "role": "AI Training Specialist & Voice Artist",
-            "company": "Scale AI",
+            "company": "Outlier AI",
             "period": "2022 - Present",
             "details": [
-                "Annotating 10k+ text/voice datasets for multilingual models.",
-                "Designing ontology management systems for LLM/Voice AI.",
-                "Leading prompt complexity evaluation & metadata accuracy."
+                "Annotated and QA-validated 10,000+ multilingual NLP training samples, speech recognition, and voice AI systems with 98% accuracy rate.",
+                "Designed and implemented ontology management systems for optimizing LLM and voice AI training data consistency and quality across multiple domains.",
+                "Led prompt complexity evaluation initiatives and metadata accuracy reviews for frontier AI models, improving model alignment and safety.",
+                "Conducted specialized voice annotation for speech-to-text and voice recognition models across 20+ languages."
+            ]
+        },
+        {
+            "role": "AI Trainer and Evaluator",
+            "company": "OneForma",
+            "period": "2023 - Present",
+            "details": [
+                "Conducted LLM evaluation and fine-tuning for conversational AI applications, focusing on response quality, safety alignment, and user satisfaction metrics.",
+                "Developed comprehensive training protocols for prompt engineering, model ranking, and AI alignment workflows based on industry best practices.",
+                "Completed 500+ evaluation tasks with zero rejections, earning Top Performer status."
             ]
         },
         {
@@ -54,10 +65,10 @@
             "company": "Fiverr and Direct Clients",
             "period": "2020 - 2024",
             "details": [
-                "Architected 30+ full-stack applications, including 5+ AI-powered SaaS tools that automated workflows for 100+ monthly active users.",
-                "Boosted client revenue by 40% for 3 key accounts by building custom RAG chatbots that improved support answer accuracy by 60%.",
-                "Drove 150% average increase in organic traffic and automated 500+ business processes, saving clients 20+ hours per week.",
-                "Maintained 99.9% uptime and sub-second load times for all deployed applications."
+                "Designed and built 30+ custom WordPress and Webflow websites integrated with AI chatbot solutions, CRM systems, and advanced automation workflows.",
+                "Developed full-stack applications using Python, Flask, JavaScript, React, and Node.js from database schema to responsive frontend deployment with 99% uptime.",
+                "Implemented advanced SEO strategies resulting in 150% organic traffic growth for 20+ client projects.",
+                "Automated 500+ customer service and business workflows using n8n, REST APIs, and third-party integrations, processing 1000+ monthly transactions."
             ]
         }
     ],
@@ -65,31 +76,35 @@
         {
             "name": "Verdant AI: Multi-Agent Orchestration System",
             "url": "https://github.com/sidthebuilder/verdant-ai",
-            "stack": "Python, FastAPI, Llama 3, Docker",
-            "description": "High-performance system that autonomously solves coding and physics problems with 85% success rate.",
+            "stack": "Python, FastAPI, Next.js 14, Genesis Physics Engine, Docker, RESTful APIs",
+            "description": "High-performance multi-agent orchestration system designed for complex problem-solving domains including physics simulation, time-series forecasting, and autonomous code generation. Production-grade system.",
             "bullets": [
-                "Engineered a 7-agent swarm using Router-Delegate pattern, reducing task completion time by 70%.",
-                "Integrated LoRA fine-tuned Llama 3 and GPT-4 via unified adapter layer, handling 50+ concurrent simulations."
+                "Router-Delegate Architecture with central intelligence engine routing tasks to specialized micro-agents",
+                "Robust Adapter Pattern wrapping complex research modules in fault-tolerant adapters for stability",
+                "Micro-Agent Swarm with specialized agents for Coding, Mathematics, Creative Writing, Web Research, and Physics Simulation",
+                "Full-Stack Implementation with FastAPI backend, Next.js 14 frontend, Docker containerization, and microservices"
             ]
         },
         {
-            "name": "NeuroSim Engine: AI Character Simulation",
+            "name": "NeuroSim Engine: Advanced AI Character Simulation System",
             "url": "https://github.com/sidthebuilder/-NeuroSim-Engine",
-            "stack": "C#, Unity, Behavior Trees",
-            "description": "Simulation platform creating psychologically realistic AI agents with dynamic emotional states.",
+            "stack": "Python, Isaac Sim, USD, PhysX, Behavior Trees, Emotion Modeling Systems",
+            "description": "Advanced AI character simulation system featuring emotional intelligence, decision-making AI, and dynamic behavior modeling for game development and interactive simulations.",
             "bullets": [
-                "Implemented trait-emotion-goal architecture generating 2,000+ unique behavioral sequences for game NPCs.",
-                "Reduced AI scripting time by 50% via visual behavior tree editor and modular emotion system."
+                "Traits and Emotions System with comprehensive framework for psychologically realistic AI characters",
+                "Goals and Desires Engine providing motivation-based AI driving character actions",
+                "Decision-Making AI with advanced behavior modeling using conditional branching and emotion trees",
+                "Physics Integration with Isaac Sim USD and PhysX engine for physics-based AI training scenarios"
             ]
         },
         {
             "name": "GMX TradeDesk: DeFi Trading Automation",
             "url": "https://github.com/sidthebuilder/gmx-v2-arbitrum-trader",
-            "stack": "Python, Flask, Web3, PyQt5",
+            "stack": "Python, Flask, Web3.py, PyQt5",
             "description": "Desktop application for automated trading strategies on GMX V2 perpetuals exchange.",
             "bullets": [
-                "Developed real-time position manager monitoring 10+ market indicators with sub-100ms execution latency.",
-                "Built backtesting engine simulating 500+ historical trading scenarios."
+                "Developed real-time position manager with sub-100ms execution latency",
+                "Built backtesting engine simulating 500+ historical trading scenarios"
             ]
         },
         {
@@ -98,22 +113,25 @@
             "stack": "Python, NVIDIA Isaac Sim, PhysX",
             "description": "Robotics training environment simulating complex breakage dynamics for ML data generation.",
             "bullets": [
-                "Created 761-line modular physics simulation featuring configurable D6 joints and progressive damage.",
-                "Generated 1,000+ training samples for reinforcement learning models at 60 FPS real-time."
+                "Generated 1,000+ synthetic training samples at 60 FPS",
+                "Modeled complex D6 joint dynamics for realistic breakage simulation"
+            ]
+        },
+        {
+            "name": "Solar Phantom: Drone Optimization",
+            "url": "https://github.com/sidthebuilder/Solar-Phantom",
+            "stack": "Python, SciPy, Physics Modeling, Data Analysis",
+            "description": "Optimization framework for solar-powered autonomous drones.",
+            "bullets": [
+                "Optimized energy consumption models for 24-hour continuous flight",
+                "Unified physics calculations improving simulation accuracy by 30%"
             ]
         },
         {
             "name": "Healthcare AI Chatbot",
             "url": "",
-            "stack": "",
+            "stack": "Python, NLP, Machine Learning",
             "description": "AI chatbot with 92% accuracy, reduced response time by 80%.",
-            "bullets": []
-        },
-        {
-            "name": "E-Learning Platform",
-            "url": "",
-            "stack": "",
-            "description": "Platform with 30+ AI modules.",
             "bullets": []
         }
     ],
@@ -121,7 +139,7 @@
         {
             "institution": "University of the People",
             "degree": "Bachelor of Science in Computer Science",
-            "year": "Expected 2026",
+            "year": "2025 - Present",
             "status": "In Progress"
         },
         {
@@ -136,13 +154,19 @@
         }
     ],
     "certifications": [
-        "CS50: Introduction to Computer Science - Harvard University (edX)",
-        "Scale AI Annotation Specialist Certification",
-        "Google Digital Marketing",
-        "Deloitte Data Analytics"
+        "CS50: Introduction to Computer Science, Harvard University (edX), 2024",
+        "Google Analytics Certification, Google Digital Garage, 2023",
+        "Google Ads Certification, Google Digital Garage, 2023",
+        "Digital Marketing Certification, Google Digital Garage, 2023",
+        "Scale AI Annotation Specialist Certification, 2022",
+        "Advanced Prompt Engineering for LLMs, Self-certified through 100+ production projects, 2024"
     ],
     "additionalInfo": [
         "Languages: English (Fluent), Hindi (Native)",
-        "Earned a 4.8/5 average platform rating and consistent 5-star reviews for delivering high-impact solutions"
+        "GitHub Portfolio: 9 active repositories with Verdant AI and NeuroSim Engine",
+        "Upwork Profile: 4.8+ rating, 100% repeat rate",
+        "Outlier AI Status: Certified Specialist with 10,000+ completed annotations",
+        "OneForma Status: Top Performer with zero rejections",
+        "Engagement Model: Flexible pricing based on project scope, complexity, and timeline"
     ]
 }
