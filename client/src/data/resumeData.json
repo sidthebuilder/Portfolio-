@@ -9,7 +9,7 @@
         "portfolioUrl": "https://sidthebuilder.github.io/Portfolio/",
         "tagline": "Available for worldwide freelance and contract engagements"
     },
-    "professionalSummary": "AI Systems Engineer and Full-Stack Developer with 4+ years of experience building production-grade AI systems, LLM training pipelines, and scalable full-stack platforms. Specialized in multi-agent architectures, automation workflows, and AI evaluation for enterprise and startup environments.",
+    "professionalSummary": "AI Systems Engineer and Full-Stack Developer with 4+ years of experience architecting intelligent systems and scalable applications. Delivered measurable impact by improving model safety by 25%, building AI agents with 85% task accuracy, and engineering solutions that drove 150% client growth. Combines expertise in LLM fine-tuning, multi-agent architecture, and production-grade deployment.",
     "coreCompetencies": [
         "Large Language Models (LLMs)",
         "Multi-Agent Systems",
@@ -21,11 +21,12 @@
         "Python"
     ],
     "technicalSkills": {
-        "AI_ML": "LLM Fine-Tuning, Prompt Engineering, Model Alignment, GPT-4, Claude, Hugging Face, Isaac Sim, Behavior Modeling, Genesis Physics Engine, Evaluation Frameworks, RLHF Concepts",
-        "Programming": "Python, JavaScript, TypeScript, Bash, SQL",
-        "Backend": "FastAPI, Flask, Node.js, Express, PostgreSQL, MongoDB, RESTful APIs",
-        "Frontend": "Next.js 14, React, Tailwind CSS, HTML5, CSS3, Responsive Design",
-        "Tools": "Docker, Git, GitHub Actions, n8n, AWS, Figma, Postman, Scale AI Platform, OpenAI API, Anthropic Claude"
+        "Languages": "Python, JavaScript, TypeScript, C#, SQL",
+        "Frontend": "React, Next.js, TailwindCSS",
+        "Backend": "FastAPI, Flask, Node.js, Express",
+        "Databases": "PostgreSQL, MongoDB, Supabase",
+        "AI/ML": "OpenAI API, Hugging Face, LLM Evaluation, RLHF",
+        "Tools": "Docker, n8n, GitHub Actions"
     },
     "experience": [
         {
@@ -126,13 +127,6 @@
                 "Optimized energy consumption models for 24-hour continuous flight",
                 "Unified physics calculations improving simulation accuracy by 30%"
             ]
-        },
-        {
-            "name": "Healthcare AI Chatbot",
-            "url": "",
-            "stack": "Python, NLP, Machine Learning",
-            "description": "AI chatbot with 92% accuracy, reduced response time by 80%.",
-            "bullets": []
         }
     ],
     "education": [

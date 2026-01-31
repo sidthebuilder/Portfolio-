@@ -6,6 +6,7 @@ import { BootSequence } from "@/components/BootSequence";
 import { QuickActions } from "@/components/QuickActions";
 import { ContactForm } from "@/components/ContactForm";
 import { ThemeController } from "@/components/ThemeController";
+import resumeData from "@/data/resumeData.json";
 
 type HistoryItem = {
   id: string;
@@ -101,7 +102,12 @@ export default function TerminalPage() {
         break;
 
       case 'about':
-        addToHistory({ id: Date.now() + 'o', type: 'output', dataType: 'about' });
+        addToHistory({
+          id: Date.now() + 'o',
+          type: 'output',
+          dataType: 'about',
+          content: resumeData.professionalSummary
+        });
         break;
 
       case 'projects':
@@ -249,7 +255,7 @@ export default function TerminalPage() {
         {/* Persistent Header */}
         <div className="mb-8 opacity-70 border-b border-primary/30 pb-2 flex justify-between items-end">
           <div>
-            <h1 className="text-2xl font-bold">SHASHANK_TERM_V2.0</h1>
+            <h1 className="text-2xl font-bold">SHASHANK_TERM_V2.2</h1>
             <p className="text-xs">LOGGED IN AS: VISITOR</p>
           </div>
           <div className="text-right text-xs">

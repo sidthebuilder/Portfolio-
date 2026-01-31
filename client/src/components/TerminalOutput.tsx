@@ -85,6 +85,11 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
 
   if (type === 'projects') {
     const projects = data as Project[];
+
+    if (!projects || !Array.isArray(projects)) {
+      return <div className="text-red-500">[ERROR] Project data corrupted.</div>;
+    }
+
     return (
       <motion.div
         variants={containerVariants}
@@ -132,8 +137,15 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
 
   if (type === 'skills') {
     const skills = data as Skill[];
+
+    // Safety check to prevent blank screen crash
+    if (!skills || !Array.isArray(skills)) {
+      return <div className="text-red-500">[ERROR] Skills data corrupted or invalid format.</div>;
+    }
+
     // Group by category
     const grouped = skills.reduce((acc, skill) => {
+      if (!skill || !skill.category) return acc; // Skip invalid items
       acc[skill.category] = [...(acc[skill.category] || []), skill];
       return acc;
     }, {} as Record<string, Skill[]>);
@@ -198,10 +210,7 @@ export function TerminalOutput({ type, content, data }: TerminalOutputProps) {
             <h2 className="text-xl font-bold mb-2">SYSTEM USER: SHASHANK</h2>
             <p className="text-sm opacity-70 mb-3">AI Systems Engineer | Full-Stack Developer | AI Training Specialist</p>
             <p className="mb-2 opacity-90 leading-relaxed">
-              AI Systems Engineer and Full-Stack Developer with 4+ years of experience building
-              production-grade AI systems, LLM training pipelines, and scalable full-stack platforms.
-              Specialized in multi-agent architectures, automation workflows, and AI evaluation for
-              enterprise and startup environments.
+              {content || "Loading profile data..."}
             </p>
             <p className="opacity-70 text-sm">
               Current Status: <span className="text-green-400 animate-pulse">ONLINE</span>
