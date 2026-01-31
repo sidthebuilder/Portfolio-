@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api, type InsertMessage } from "@shared/routes";
-import resumeData from "../data/resumeData.json";
+import resumeData from "../data/data_v3.json";
 
 // Projects Hook - Using static data for GitHub Pages
 export function useProjects() {

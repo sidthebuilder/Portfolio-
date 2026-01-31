@@ -6,7 +6,7 @@ import { BootSequence } from "@/components/BootSequence";
 import { QuickActions } from "@/components/QuickActions";
 import { ContactForm } from "@/components/ContactForm";
 import { ThemeController } from "@/components/ThemeController";
-import resumeData from "@/data/resumeData.json";
+import resumeData from "@/data/data_v3.json";
 
 type HistoryItem = {
   id: string;
