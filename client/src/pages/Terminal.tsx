@@ -80,38 +80,13 @@ export default function TerminalPage() {
         return;
       }
 
+      // AI chat disabled for GitHub Pages static hosting
       addToHistory({
         id: Date.now() + 'o',
         type: 'output',
         dataType: 'text',
-        content: "VERDANT: Processing..."
+        content: "VERDANT AI is currently offline (GitHub Pages static hosting). For AI features, please contact me directly."
       });
-
-      try {
-        const res = await fetch("/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: cmd })
-        });
-        const data = await res.json();
-        if (data.response) {
-          addToHistory({
-            id: Date.now() + 'o2',
-            type: 'output',
-            dataType: 'text',
-            content: `VERDANT: ${data.response}`
-          });
-        } else {
-          throw new Error("No response");
-        }
-      } catch (e) {
-        addToHistory({
-          id: Date.now() + 'o2',
-          type: 'output',
-          dataType: 'error',
-          content: "VERDANT CONNECTION LOST."
-        });
-      }
       return;
     }
 
@@ -213,38 +188,13 @@ export default function TerminalPage() {
         // Keep "ask <msg>" as a shortcut
         if (cmdLower.startsWith("ask ")) {
           const message = cmd.replace(/^ask\s+/i, ""); // case insensitive replace
+          // AI chat disabled for GitHub Pages static hosting
           addToHistory({
             id: Date.now() + 'o',
             type: 'output',
             dataType: 'text',
-            content: "VERDANT: Thinking..."
+            content: "VERDANT AI is currently offline (GitHub Pages static hosting). For AI features, please contact me directly."
           });
-
-          try {
-            const res = await fetch("/api/chat", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ message })
-            });
-            const data = await res.json();
-            if (data.response) {
-              addToHistory({
-                id: Date.now() + 'o2',
-                type: 'output',
-                dataType: 'text',
-                content: `VERDANT: ${data.response}`
-              });
-            } else {
-              throw new Error("No response");
-            }
-          } catch (e) {
-            addToHistory({
-              id: Date.now() + 'o2',
-              type: 'output',
-              dataType: 'error',
-              content: "VERDANT CONNECTION LOST."
-            });
-          }
           return;
         }
 
