@@ -2,8 +2,6 @@
 
 > A modern, interactive terminal-style portfolio website built with React, TypeScript, and Vite.
 
-![Portfolio Preview](https://github.com/sidthebuilder/Portfolio-/blob/main/attached_assets/preview.png?raw=true)
-
 **Live Demo:** [https://sidthebuilder.github.io/Portfolio-/](https://sidthebuilder.github.io/Portfolio-/)
 
 ## ✨ Features
