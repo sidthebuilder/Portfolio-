@@ -1,55 +1,113 @@
-# Terminal Portfolio | Shashank Kumar
+# Interactive Terminal Portfolio
 
-> A highly interactive, command-line themed portfolio website built with React, TypeScript, and Vite.
+> A modern, interactive terminal-style portfolio website built with React, TypeScript, and Vite.
 
-![Terminal Portfolio](https://github.com/sidthebuilder.png)
+![Portfolio Preview](https://github.com/sidthebuilder/Portfolio-/blob/main/attached_assets/preview.png?raw=true)
 
-## 🚀 Overview
-
-This project is a unique, developer-centric portfolio designed to mimic a terminal interface. It features a fully functional command line, autocomplete, command history, and multiple themes.
-
-**Live Demo:** [Coming Soon]
+**Live Demo:** [https://sidthebuilder.github.io/Portfolio-/](https://sidthebuilder.github.io/Portfolio-/)
 
 ## ✨ Features
 
-- **Interactive Terminal**: Type commands like `help`, `projects`, `skills`, `contact`, and more.
-- **AI Integration**: Powered by Google Gemini to answer questions about my background.
-- **PDF Resume Generation**: Auto-generates a production-grade PDF resume on the fly.
-- **Multiple Themes**: Switch between Dark, Light, Matrix, and more.
-- **Keyboard Shortcuts**: Tab autocomplete, Arrow key history navigation.
-- **Responsive Design**: Works on desktop and mobile.
+- **Interactive Terminal Interface**: Fully functional command-line experience with autocomplete and command history
+- **AI-Powered Assistant**: Integrated Google Gemini AI to answer questions about the portfolio owner
+- **PDF Resume Generation**: Automatically generates a professional PDF resume on demand
+- **Dynamic Theming**: Multiple theme options including Dark, Light, Matrix, and custom themes
+- **Quick Actions**: Convenient navigation buttons for About, Projects, Skills, Contact, and Resume
+- **Keyboard Shortcuts**: 
+  - `Tab` for autocomplete
+  - `↑/↓` arrows for command history
+  - `Ctrl+L` to clear terminal
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **No Browser Caching**: Implements cache control headers for always-fresh content
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React, TypeScript, Vite
-- **Styling**: Styled-Components, CSS Grid
-- **AI**: Google Generative AI (Gemini)
-- **Utilities**: jsPDF (Resume generation), GSAP (Animations)
+**Frontend:**
+- React 18
+- TypeScript
+- Vite
+- Wouter (routing)
+- TailwindCSS
+
+**Backend/Services:**
+- Express.js
+- Google Generative AI (Gemini)
+- PostgreSQL (Drizzle ORM)
+
+**Utilities:**
+- jsPDF & html2canvas (PDF generation)
+- React Query (data fetching)
+- Zod (validation)
 
 ## 📦 Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/sidthebuilder/terminal-portfolio.git
+git clone https://github.com/sidthebuilder/Portfolio-.git
 
 # Navigate to directory
-cd terminal-portfolio
+cd Portfolio-
 
 # Install dependencies
 npm install
+
+# Set up environment variables
+cp .env.example .env
+# Add your GEMINI_API_KEY to .env
 
 # Start development server
 npm run dev
 ```
 
-## 📝 Usage
+## 🚀 Deployment
 
-Type `help` in the terminal to see available commands.
+This portfolio is deployed on GitHub Pages using manual deployment for maximum security and control.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Deploy to GitHub Pages
+
+```bash
+# Deploy the built files to gh-pages branch
+git subtree push --prefix dist/public origin gh-pages
+```
+
+For detailed deployment instructions, see the [deployment guide](docs/deployment.md).
+
+## 📝 Available Commands
+
+Type `help` in the terminal to see all available commands:
+
+- `about` - Learn about the portfolio owner
+- `projects` - View featured projects
+- `skills` - See technical skills
+- `contact` - Get contact information
+- `resume` - Download PDF resume
+- `ai [question]` - Ask the AI assistant a question
+- `clear` - Clear the terminal
+- `theme [name]` - Change the theme
+
+## 🎨 Themes
+
+Available themes:
+- `dark` - Default dark theme
+- `light` - Light mode
+- `matrix` - Matrix-inspired green theme
+- `cyberpunk` - Neon cyberpunk theme
+- `ocean` - Ocean blue theme
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/sidthebuilder/Portfolio-/issues).
+
 ---
 
-Designed and Developed by **Shashank Kumar**
+**Built with ❤️ using React + TypeScript + Vite**
