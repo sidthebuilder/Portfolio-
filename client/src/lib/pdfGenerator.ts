@@ -15,12 +15,16 @@ export function generateResumePDF() {
     const rightMargin = 190;
     const lineHeight = 5;
     const sectionSpacing = 8;
+    const bulletIndent = 5;
 
     // Helper function to add text with word wrap
     const addText = (text: string, size: number, style: 'normal' | 'bold' = 'normal', indent: number = 0) => {
         doc.setFontSize(size);
         doc.setFont('helvetica', style);
-        const lines = doc.splitTextToSize(text, rightMargin - leftMargin - indent);
+        // Calculate max width based on indent
+        const maxWidth = rightMargin - leftMargin - indent;
+        const lines = doc.splitTextToSize(text, maxWidth);
+
         lines.forEach((line: string) => {
             if (y > 280) {
                 doc.addPage();
@@ -31,180 +35,151 @@ export function generateResumePDF() {
         });
     };
 
-    // Header
+    // --- Header ---
     addText('SHASHANK KUMAR', 16, 'bold');
-    addText('AI Systems Engineer | Full-Stack Developer | AI Training Specialist', 10, 'normal');
+    addText('AI Systems Engineer and Full-Stack Developer', 10, 'normal');
 
-    // Email with hyperlink
+    // Contact Info Line 1
     doc.setFontSize(9);
-    doc.text('Baraut, Baghpat, India | ', leftMargin, y);
-    const locationWidth = doc.getTextWidth('Baraut, Baghpat, India | ');
+    const location = 'Delhi NCR, India | ';
+    doc.text(location, leftMargin, y);
+    const locWidth = doc.getTextWidth(location);
     doc.setTextColor(0, 0, 255);
-    doc.textWithLink('shashankchoudhry792@gmail.com', leftMargin + locationWidth, y, {
-        url: 'mailto:shashankchoudhry792@gmail.com'
-    });
+    doc.textWithLink('shashankchoudhary792@gmail.com', leftMargin + locWidth, y, { url: 'mailto:shashankchoudhary792@gmail.com' });
     doc.setTextColor(0, 0, 0);
     y += lineHeight;
 
-    // GitHub link
+    // Contact Info Line 2 (Links)
     doc.setFontSize(9);
-    doc.text('GitHub: ', leftMargin, y);
-    const githubLabelWidth = doc.getTextWidth('GitHub: ');
+    const githubText = 'github.com/sidthebuilder';
     doc.setTextColor(0, 0, 255);
-    doc.textWithLink('github.com/sidthebuilder', leftMargin + githubLabelWidth, y, {
-        url: 'https://github.com/sidthebuilder'
-    });
+    doc.textWithLink(githubText, leftMargin, y, { url: 'https://github.com/sidthebuilder' });
+    const githubWidth = doc.getTextWidth(githubText);
+
+    doc.setTextColor(0, 0, 0);
+    doc.text(' | ', leftMargin + githubWidth, y);
+    const separatorWidth = doc.getTextWidth(' | ');
+
+    doc.setTextColor(0, 0, 255);
+    const portUrl = 'https://sidthebuilder.github.io/Terminal-Portfolio';
+    doc.textWithLink(portUrl, leftMargin + githubWidth + separatorWidth, y, { url: portUrl });
     doc.setTextColor(0, 0, 0);
     y += lineHeight;
 
-    addText('Available for worldwide freelance and contract engagements • Rates discussed based on scope and requirements', 9, 'normal');
-
+    addText('Available for worldwide freelance and contract engagements', 9, 'normal');
     y += sectionSpacing;
 
-    // Professional Summary
-    addText('PROFESSIONAL SUMMARY', 12, 'bold');
+    // --- Professional Summary ---
+    addText('PROFESSIONAL SUMMARY', 11, 'bold');
     y += 2;
-    addText('AI Systems Engineer and Full-Stack Developer with 4+ years of experience building production-grade AI systems, LLM training pipelines, and scalable full-stack platforms. Specialized in multi-agent architectures, automation workflows, and AI evaluation for enterprise and startup environments.', 9, 'normal');
-
+    addText('AI Systems Engineer with 4+ years of experience architecting intelligent systems and scalable applications. Delivered measurable impact by improving model safety by 25%, building AI agents with 85% task accuracy, and engineering solutions that drove 150% client growth. Combines expertise in LLM fine-tuning, multi-agent architecture, and production-grade deployment.', 9, 'normal');
     y += sectionSpacing;
 
-    // Flagship Projects
-    addText('FLAGSHIP PROJECTS', 12, 'bold');
+    // --- Core Competencies ---
+    addText('CORE COMPETENCIES', 11, 'bold');
+    y += 2;
+    addText('Large Language Models (LLMs) | Multi-Agent Systems | RAG Pipelines | FastAPI | Next.js | React | Docker | Python', 9, 'normal');
+    y += sectionSpacing;
+
+    // --- Technical Skills ---
+    addText('TECHNICAL SKILLS', 11, 'bold');
+    y += 2;
+    // We format these as bullet-like or just lines. User text has hyphens.
+    addText('- AI & Machine Learning: LLM Fine-Tuning (LoRA, DPO), RAG Pipeline Development, Prompt Engineering, Model Evaluation (MT-Bench, HELM), AI Agent Orchestration, NVIDIA Isaac Sim', 9, 'normal');
+    addText('- Programming: Python, JavaScript, TypeScript, C#, SQL, Bash', 9, 'normal');
+    addText('- Backend Development: FastAPI, Flask, Node.js, Express, PostgreSQL, MongoDB, RESTful APIs', 9, 'normal');
+    addText('- Frontend Development: Next.js 14, React, Tailwind CSS, HTML5, CSS3', 9, 'normal');
+    addText('- Tools & Platforms: Docker, Git, GitHub Actions, n8n, AWS, Hugging Face, OpenAI API, Anthropic API', 9, 'normal');
+    y += sectionSpacing;
+
+    // --- Professional Experience ---
+    addText('PROFESSIONAL EXPERIENCE', 11, 'bold');
     y += 2;
 
+    // Job 1
+    addText('AI Training and Evaluation Specialist', 10, 'bold');
+    addText('Contract for AI Research Platforms (via Upwork, Outlier, OneForma) | Remote', 9, 'normal');
+    addText('2024 - Present', 9, 'normal');
+    addText('- Improved model safety scores by 25% by designing and executing 500+ adversarial prompts for red-teaming frontier LLMs.', 9, 'normal', bulletIndent);
+    addText('- Accelerated data pipeline efficiency by 30% by creating annotation scripts and ontology systems for 10,000+ multilingual NLP samples, maintaining 98% QA accuracy.', 9, 'normal', bulletIndent);
+    addText('- Trained and evaluated 3+ major LLMs on reasoning and code-generation tasks, directly contributing to production release cycles.', 9, 'normal', bulletIndent);
+    addText('- Consistently rated Top Performer (top 5%) across 1,000+ complex evaluation tasks.', 9, 'normal', bulletIndent);
+    y += 4;
+
+    // Job 2
+    addText('Freelance AI and Full-Stack Developer', 10, 'bold');
+    addText('Fiverr and Direct Clients | Remote', 9, 'normal');
+    addText('2021 - 2024', 9, 'normal');
+    addText('- Architected 30+ full-stack applications, including 5+ AI-powered SaaS tools that automated workflows for 100+ monthly active users.', 9, 'normal', bulletIndent);
+    addText('- Boosted client revenue by 40% for 3 key accounts by building custom RAG chatbots that improved support answer accuracy by 60%.', 9, 'normal', bulletIndent);
+    addText('- Drove 150% average increase in organic traffic and automated 500+ business processes, saving clients 20+ hours per week.', 9, 'normal', bulletIndent);
+    addText('- Maintained 99.9% uptime and sub-second load times for all deployed applications.', 9, 'normal', bulletIndent);
+    y += sectionSpacing;
+
+    // --- Key Projects ---
+    addText('KEY PROJECTS', 11, 'bold');
+    y += 2;
+
+    // Project 1
     addText('Verdant AI: Multi-Agent Orchestration System', 10, 'bold');
+    addText('Python, FastAPI, Llama 3, Docker', 9, 'normal');
+    addText('High-performance system that autonomously solves coding and physics problems with 85% success rate.', 9, 'normal');
+    addText('- Engineered a 7-agent swarm using Router-Delegate pattern, reducing task completion time by 70%.', 9, 'normal', bulletIndent);
+    addText('- Integrated LoRA fine-tuned Llama 3 and GPT-4 via unified adapter layer, handling 100+ concurrent simulations.', 9, 'normal', bulletIndent);
+    y += 3;
 
-    // Verdant AI GitHub link
-    doc.setFontSize(9);
-    doc.text('GitHub: ', leftMargin, y);
-    const verdantGithubWidth = doc.getTextWidth('GitHub: ');
-    doc.setTextColor(0, 0, 255);
-    doc.textWithLink('github.com/sidthebuilder/verdant-ai', leftMargin + verdantGithubWidth, y, {
-        url: 'https://github.com/sidthebuilder/verdant-ai'
-    });
-    doc.setTextColor(0, 0, 0);
-    y += lineHeight;
+    // Project 2
+    addText('NeuroSim Engine: AI Character Simulation', 10, 'bold');
+    addText('C#, Unity, Behavior Trees', 9, 'normal');
+    addText('Simulation platform creating psychologically realistic AI agents with dynamic emotional states.', 9, 'normal');
+    addText('- Implemented trait-emotion-goal architecture generating 10,000+ unique behavioral sequences for game NPCs.', 9, 'normal', bulletIndent);
+    addText('- Reduced AI scripting time by 50% via visual behavior tree editor and modular emotion system.', 9, 'normal', bulletIndent);
+    y += 3;
 
-    addText('Status: Active Development', 9, 'normal');
-    addText('High-performance multi-agent orchestration system designed for complex problem-solving domains including physics simulation, time-series forecasting, and autonomous code generation. Production-grade system.', 9, 'normal');
-    addText('• Router-Delegate Architecture with central intelligence engine routing tasks to specialized micro-agents', 9, 'normal');
-    addText('• Robust Adapter Pattern wrapping complex research modules in fault-tolerant adapters for stability', 9, 'normal');
-    addText('• Micro-Agent Swarm with specialized agents for Coding, Mathematics, Creative Writing, Web Research, and Physics Simulation', 9, 'normal');
-    addText('• Full-Stack Implementation with FastAPI backend, Next.js 14 frontend, Docker containerization, and microservices', 9, 'normal');
-    addText('• Technologies: Python, FastAPI, Next.js 14, Genesis Physics Engine, Docker, RESTful APIs', 9, 'normal');
+    // Project 3
+    addText('GMX TradeDesk: DeFi Trading Automation', 10, 'bold');
+    addText('Python, Flask, Web3, PyQt5', 9, 'normal');
+    addText('Desktop application for automated trading strategies on GMX V2 perpetuals exchange.', 9, 'normal');
+    addText('- Developed real-time position manager monitoring 10+ market indicators with sub-100ms execution latency.', 9, 'normal', bulletIndent);
+    addText('- Built backtesting engine simulating 1,000+ historical trading scenarios.', 9, 'normal', bulletIndent);
+    y += 3;
 
-    y += 4;
-
-    addText('NeuroSim Engine: Advanced AI Character Simulation System', 10, 'bold');
-
-    // NeuroSim GitHub link
-    doc.setFontSize(9);
-    doc.text('GitHub: ', leftMargin, y);
-    const neurosimGithubWidth = doc.getTextWidth('GitHub: ');
-    doc.setTextColor(0, 0, 255);
-    doc.textWithLink('github.com/sidthebuilder/-NeuroSim-Engine', leftMargin + neurosimGithubWidth, y, {
-        url: 'https://github.com/sidthebuilder/-NeuroSim-Engine'
-    });
-    doc.setTextColor(0, 0, 0);
-    y += lineHeight;
-
-    addText('Status: Actively Maintained', 9, 'normal');
-    addText('Advanced AI character simulation system featuring emotional intelligence, decision-making AI, and dynamic behavior modeling for game development and interactive simulations.', 9, 'normal');
-    addText('• Traits and Emotions System with comprehensive framework for psychologically realistic AI characters', 9, 'normal');
-    addText('• Goals and Desires Engine providing motivation-based AI driving character actions', 9, 'normal');
-    addText('• Decision-Making AI with advanced behavior modeling using conditional branching and emotion trees', 9, 'normal');
-    addText('• Physics Integration with Isaac Sim USD and PhysX engine for physics-based AI training scenarios', 9, 'normal');
-    addText('• Technologies: Python, Isaac Sim, USD, PhysX, Behavior Trees, Emotion Modeling Systems', 9, 'normal');
-
+    // Project 4
+    addText('Isaac Sim Physics: Breakable Object Simulation', 10, 'bold');
+    addText('Python, NVIDIA Isaac Sim, PhysX', 9, 'normal');
+    addText('Robotics training environment simulating complex breakage dynamics for ML data generation.', 9, 'normal');
+    addText('- Created 761-line modular physics simulation featuring configurable D6 joints and progressive damage.', 9, 'normal', bulletIndent);
+    addText('- Generated 5,000+ training samples for reinforcement learning models at 60 FPS real-time.', 9, 'normal', bulletIndent);
     y += sectionSpacing;
 
-    // Professional Experience
-    addText('PROFESSIONAL EXPERIENCE', 12, 'bold');
+    // --- Education ---
+    addText('EDUCATION', 11, 'bold');
     y += 2;
 
-    addText('AI Training Specialist and Voice Artist', 10, 'bold');
-    addText('Outlier AI | Remote', 9, 'normal');
-    addText('2022 - Present', 9, 'normal');
-    addText('• Annotated and QA-validated 10,000+ multilingual NLP training samples, speech recognition, and voice AI systems with 98% accuracy rate.', 9, 'normal');
-    addText('• Designed and implemented ontology management systems for optimizing LLM and voice AI training data consistency and quality across multiple domains.', 9, 'normal');
-    addText('• Led prompt complexity evaluation initiatives and metadata accuracy reviews for frontier AI models, improving model alignment and safety.', 9, 'normal');
-    addText('• Conducted specialized voice annotation for speech-to-text and voice recognition models across 20+ languages.', 9, 'normal');
-    addText('• Collaborated with cross-functional AI research teams to deliver high-quality labeled datasets for production model fine-tuning.', 9, 'normal');
+    // Edu 1
+    addText('University of the People', 10, 'bold');
+    addText('Bachelor of Science in Computer Science', 9, 'normal');
+    y += 2;
 
-    y += 4;
-
-    addText('AI Trainer and Evaluator', 10, 'bold');
-    addText('OneForma | Remote', 9, 'normal');
-    addText('2023 - Present', 9, 'normal');
-    addText('• Conducted LLM evaluation and fine-tuning for conversational AI applications, focusing on response quality, safety alignment, and user satisfaction metrics.', 9, 'normal');
-    addText('• Developed comprehensive training protocols for prompt engineering, model ranking, and AI alignment workflows based on industry best practices.', 9, 'normal');
-    addText('• Created technical documentation and best-practice guides for AI annotation teams and model evaluation standards.', 9, 'normal');
-    addText('• Maintained ongoing collaboration on specialized AI training projects with consistent delivery and zero-rejection quality focus.', 9, 'normal');
-    addText('• Completed 500+ evaluation tasks with zero rejections, earning Top Performer status.', 9, 'normal');
-
-    y += 4;
-
-    addText('Freelance Full-Stack Developer', 10, 'bold');
-    addText('Fiverr | Remote', 9, 'normal');
-    addText('2020 - 2024', 9, 'normal');
-    addText('• Designed and built 30+ custom WordPress and Webflow websites integrated with AI chatbot solutions, CRM systems, and advanced automation workflows.', 9, 'normal');
-    addText('• Developed full-stack applications using Python, Flask, JavaScript, React, and Node.js from database schema to responsive frontend deployment with 99% uptime.', 9, 'normal');
-    addText('• Implemented advanced SEO strategies resulting in 150% organic traffic growth for 20+ client projects.', 9, 'normal');
-    addText('• Created AI-powered e-learning modules with automated assessments, achieving 4.8 out of 5 average learner satisfaction rating.', 9, 'normal');
-    addText('• Automated 500+ customer service and business workflows using n8n, REST APIs, and third-party integrations, processing 1000+ monthly transactions.', 9, 'normal');
-    addText('• Delivered complete web solutions including database design, API development, deployment, and performance optimization.', 9, 'normal');
-
+    // Edu 2
+    addText('Ch. Charan Singh University, Meerut', 10, 'bold');
+    addText('Bachelor of Arts', 9, 'normal');
     y += sectionSpacing;
 
-    // Technical Skills
-    addText('TECHNICAL SKILLS', 12, 'bold');
+    // --- Certifications ---
+    addText('CERTIFICATIONS', 11, 'bold');
     y += 2;
-    addText('Programming Languages:', 9, 'bold');
-    addText('Python, JavaScript, TypeScript, Bash, SQL', 9, 'normal');
-    y += 2;
-    addText('Web Development:', 9, 'bold');
-    addText('HTML5, CSS3, React, Next.js 14, FastAPI, Flask, Node.js, Express, RESTful APIs, Responsive Design, WordPress, Webflow', 9, 'normal');
-    y += 2;
-    addText('AI and Machine Learning:', 9, 'bold');
-    addText('LLM Fine-tuning, Prompt Engineering, Model Alignment, GPT-4, Claude, Hugging Face, Isaac Sim, Behavior Modeling, Genesis Physics Engine, Evaluation Frameworks, RLHF Concepts', 9, 'normal');
-    y += 2;
-    addText('Automation and Tools:', 9, 'bold');
-    addText('n8n, Docker, AWS, Git, Figma, Postman, Scale AI Platform, OpenAI API, Anthropic Claude', 9, 'normal');
-
+    addText('In Progress', 9, 'bold');
+    addText('- CS50: Introduction to Computer Science - Harvard University (edX)', 9, 'normal', bulletIndent);
+    addText('- Scale AI Annotation Specialist Certification', 9, 'normal', bulletIndent);
     y += sectionSpacing;
 
-    // Education
-    addText('EDUCATION', 12, 'bold');
+    // --- Additional Information ---
+    addText('ADDITIONAL INFORMATION', 11, 'bold');
     y += 2;
-    addText('Bachelor of Science in Computer Science', 10, 'bold');
-    addText('University of the People', 9, 'normal');
-    addText('2025 - Present (In Progress)', 9, 'normal');
-    addText('Coursework: Algorithms, Data Structures, Software Engineering, Database Systems, Artificial Intelligence Fundamentals, System Design', 9, 'normal');
+    addText('- Languages: English (Fluent), Hindi (Native)', 9, 'normal', bulletIndent);
+    addText('- Earned a 4.8/5 average platform rating and consistent 5-star reviews for delivering high-impact solutions', 9, 'normal', bulletIndent);
 
-    y += sectionSpacing;
-
-    // Certifications
-    addText('CERTIFICATIONS', 12, 'bold');
-    y += 2;
-    addText('• CS50: Introduction to Computer Science, Harvard University (edX), 2024', 9, 'normal');
-    addText('• Google Analytics Certification, Google Digital Garage, 2023', 9, 'normal');
-    addText('• Google Ads Certification, Google Digital Garage, 2023', 9, 'normal');
-    addText('• Digital Marketing Certification, Google Digital Garage, 2023', 9, 'normal');
-    addText('• Scale AI Annotation Specialist Certification, 2022', 9, 'normal');
-    addText('• Advanced Prompt Engineering for LLMs, Self-certified through 100+ production projects, 2024', 9, 'normal');
-
-    y += sectionSpacing;
-
-    // Additional Information
-    addText('ADDITIONAL INFORMATION', 12, 'bold');
-    y += 2;
-    addText('• Languages: English (Fluent), Hindi (Native)', 9, 'normal');
-    addText('• GitHub Portfolio: 9 active repositories with Verdant AI and NeuroSim Engine', 9, 'normal');
-    addText('• Upwork Profile: 4.8+ rating, 100% repeat rate', 9, 'normal');
-    addText('• Outlier AI Status: Certified Specialist with 10,000+ completed annotations', 9, 'normal');
-    addText('• OneForma Status: Top Performer with zero rejections', 9, 'normal');
-    addText('• Engagement Model: Flexible pricing based on project scope, complexity, and timeline', 9, 'normal');
-
-    // Save the PDF
+    // Save
     doc.save('Shashank_Kumar_Resume.pdf');
 }
