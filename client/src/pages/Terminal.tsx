@@ -220,7 +220,7 @@ export default function TerminalPage() {
 
           const response = await generateResponse([], message);
 
-          const dataType = response.startsWith("ERROR:") || response.startsWith("SYSTEM ERROR:") ? 'error' : 'success';
+          const dataType = /error/i.test(response) ? 'error' : 'success';
 
           addToHistory({
             id: Date.now() + 'ai',
