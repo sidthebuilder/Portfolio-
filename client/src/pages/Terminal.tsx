@@ -94,11 +94,14 @@ export default function TerminalPage() {
       // Call AI
       const response = await generateResponse([], cmdRaw);
 
+      // Determine output type
+      const dataType = response.startsWith("ERROR:") || response.startsWith("SYSTEM ERROR:") ? 'error' : 'success';
+
       // Add response
       addToHistory({
         id: Date.now() + 'ai',
         type: 'output',
-        dataType: 'success', // Use success color for AI response
+        dataType: dataType,
         content: response
       });
       return;
@@ -217,10 +220,12 @@ export default function TerminalPage() {
 
           const response = await generateResponse([], message);
 
+          const dataType = response.startsWith("ERROR:") || response.startsWith("SYSTEM ERROR:") ? 'error' : 'success';
+
           addToHistory({
             id: Date.now() + 'ai',
             type: 'output',
-            dataType: 'success',
+            dataType: dataType,
             content: response
           });
           return;
