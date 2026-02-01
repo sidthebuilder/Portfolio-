@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useProjects, useSkills } from "@/hooks/use-terminal-data";
+import { generateResponse } from "@/lib/gemini";
 import { TerminalOutput } from "@/components/TerminalOutput";
 import { CommandInput } from "@/components/CommandInput";
 import { BootSequence } from "@/components/BootSequence";
@@ -81,12 +82,24 @@ export default function TerminalPage() {
         return;
       }
 
-      // AI chat disabled for GitHub Pages static hosting
+      // Loading state
+      const loadingId = Date.now() + 'loading';
       addToHistory({
-        id: Date.now() + 'o',
+        id: loadingId,
         type: 'output',
         dataType: 'text',
-        content: "VERDANT AI is currently offline (GitHub Pages static hosting). For AI features, please contact me directly."
+        content: "PROCESSING INPUT..."
+      });
+
+      // Call AI
+      const response = await generateResponse([], cmdRaw);
+
+      // Add response
+      addToHistory({
+        id: Date.now() + 'ai',
+        type: 'output',
+        dataType: 'success', // Use success color for AI response
+        content: response
       });
       return;
     }
@@ -194,12 +207,21 @@ export default function TerminalPage() {
         // Keep "ask <msg>" as a shortcut
         if (cmdLower.startsWith("ask ")) {
           const message = cmd.replace(/^ask\s+/i, ""); // case insensitive replace
-          // AI chat disabled for GitHub Pages static hosting
+          // Call AI for one-off request
           addToHistory({
-            id: Date.now() + 'o',
+            id: Date.now() + 'loading',
             type: 'output',
             dataType: 'text',
-            content: "VERDANT AI is currently offline (GitHub Pages static hosting). For AI features, please contact me directly."
+            content: "ANALYZING QUERY..."
+          });
+
+          const response = await generateResponse([], message);
+
+          addToHistory({
+            id: Date.now() + 'ai',
+            type: 'output',
+            dataType: 'success',
+            content: response
           });
           return;
         }
